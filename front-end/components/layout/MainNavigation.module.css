@@ -1,0 +1,146 @@
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.header {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 3% 15%;
+  margin-bottom: 5%;
+}
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: right;
+}
+
+.header li {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.header a {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 33px;
+  color: #581313;
+  text-decoration: none;
+}
+
+.header a:hover,
+.header a:active,
+.header a.active {
+  color: rgb(2, 2, 2);
+  background-color: #bbeaf3;
+}
+
+.logo {
+  width: 250px;
+  margin-top: 20px;
+}
+
+.getStartedButton {
+  background-color:#00B4D8;
+  border-radius: 10px;
+  color: rgb(255, 255, 255) !important;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+}
+.getStartedButton:hover{
+  color: rgb(255, 255, 255) !important;
+  background-color: #0c3e47 !important;
+}
+
+.navigation {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab {
+  margin-right: 20px;
+  position: relative;
+}
+
+.tabLink {
+  position: absolute;
+  width: 137px;
+  height: 47px;
+  left: 1000px;
+  top: 77px;
+  
+}
+
+.selectedLine {
+  left: 0;
+  height: 15px;
+}
+
+.tabLink:hover .selectedLine {
+  display: block;
+}
+
+.content {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.title {
+  
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 64px;
+  text-align: center;
+  
+  color: #000000;
+}
+
+.subtitle {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 28px;
+  /* identical to box height, or 122% */
+  
+  text-align: center;
+  
+  color: #0992AD;
+}
+
+.imageContainer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  margin-left: 20%;
+  height: calc(100% - 400px); /* Adjust this value to leave space for subtitle */
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.fullWidthImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  user-select: none;
+}

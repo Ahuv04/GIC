@@ -1,0 +1,19 @@
+.card {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 40rem;
+    margin: 3rem auto;
+    width: 90%;
+    max-width: 40rem;
+}
+.line {
+    border-left: 2px solid #00b4d8;
+    height: 20px;
+    margin: 0 2px;
+    margin-left: 50%;
+}
+
+.heading {
+  text-align: center;
+}
