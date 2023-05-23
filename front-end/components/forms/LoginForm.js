@@ -44,7 +44,7 @@ function LoginForm(props) {
                 }}
             >
                 <div className={classes.textcls}>
-                    <text> Login to ChainRover </text>
+                    <p> Login to ChainRover </p>
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="username">Username</label>
@@ -66,7 +66,7 @@ function LoginForm(props) {
                 </div>
                 {wrongPass && (
                     <div className={classes.errorState}>
-                        <text>** The username, password you entered is incorrect.</text>
+                        <p>** The username, password you entered is incorrect.</p>
                     </div>
                 )}
                 <div className={classes.actions}>

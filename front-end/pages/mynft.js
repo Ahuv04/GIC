@@ -1,17 +1,44 @@
 import PartsList from "../components/ui/PartsLists";
 import classes from "../components/ui/PartCard.module.css";
 import { Fragment } from "react";
+import { useState, useContext, useEffect } from "react";
+import LoginContext from "../context/loginContext";
+
 function MyNFTs(props) {
-    const vin = "IDKWHAT";
-    return (
-        <div style={{ display: "flex", "margin-top": "-5%", "margin-left": "10%", "margin-right":"5%" }}>
-            <div style={{ "margin-right": "20%" }}>
+    const [data, setData] = useState(null);
+    const { port } = useContext(LoginContext);
+    const restURL = "http://localhost:" + port + "/getParts";
+    console.log(restURL);
+    useEffect(() => {
+        console.log("Port " + port)
+        if (port) {
+            fetch(restURL)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((res) => {
+                    console.log(res);
+                    setData(res);
+                });
+        }
+    }, [setData, port]);
+    console.log(data);
+    const uiElement = data ? (
+        <div
+            style={{
+                display: "flex",
+                "marginTop": "-5%",
+                "marginLeft": "10%",
+                "marginRight": "5%",
+            }}
+        >
+            <div style={{ "marginRight": "20%" }}>
                 <h1
                     style={{
-                        "font-family": "Noto Sans",
-                        "font-style": "normal",
-                        "font-weight": 400,
-                        "font-size": "45px",
+                        "fontFamily": "Noto Sans",
+                        "fontStyle": "normal",
+                        "fontWeight": 400,
+                        "fontSize": "45px",
                     }}
                 >
                     My NFTs
@@ -20,14 +47,17 @@ function MyNFTs(props) {
                     src="/src/jlrcar.png"
                     className={classes.carImage}
                 />
-                <h2 style={{ "text-align": "center" }}>VIN Number: {vin}</h2>
+                <h2 style={{ "textAlign": "center" }}>VIN Number: {data["vin"]}</h2>
             </div>
             <div style={{ width: "100%" }}>
                 <h3 className={classes.heading}>Parts Collection</h3>
-                <PartsList />
+                <PartsList parts={data["parts"]} />
             </div>
         </div>
+    ) : (
+        <div />
     );
+    return uiElement;
 }
 
 export default MyNFTs;

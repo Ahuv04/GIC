@@ -3,7 +3,7 @@
 }
 
 .control {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .control label {
@@ -23,6 +23,7 @@
 }
 
 .control input,
+.control select,
 .control textarea {
     display: block;
     font: inherit;

@@ -21,15 +21,30 @@ const jsonData = [
         email: "alice@example.com",
     },
 ];
-function JSONCards() {
+function JSONCards(props) {
+    const blocks = props.data.blocks;
+
+    console.log(blocks);
     return (
         <div>
-            {jsonData.map((item, index) => (
-                <Fragment key={item.id}>
+            {blocks.map((item, index) => (
+                <Fragment key={"f" + index}>
                     <Card>
-                        <pre>{JSON.stringify(item, null, 2)}</pre>
+                        <pre>
+                            {JSON.stringify(
+                                item,
+                                function (key, value) {
+                                    if (typeof value === "string") {
+                                        return value.substring(0, Math.min(value.length, 56));
+                                    } else {
+                                        return value;
+                                    }
+                                },
+                                2
+                            )}
+                        </pre>
                     </Card>
-                    {index < jsonData.length - 1 && <div className={classes.line} />}
+                    {index < blocks.length - 1 && <div key={"k" + index} className={classes.line} />}
                 </Fragment>
             ))}
         </div>

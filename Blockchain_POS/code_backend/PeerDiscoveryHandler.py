@@ -17,11 +17,11 @@ class PeerDiscoveryHandler():
 
     def status(self):
         pass
-        # while True:
-        #     print('Current Connections:')
-        #     for peer in self.socketCommunication.peers:
-        #         print(str(peer.ip) + ':' + str(peer.port))
-        #     time.sleep(5)
+        while True:
+            print('Current Connections:')
+            for peer in self.socketCommunication.peers:
+                print(str(peer.ip) + ':' + str(peer.port))
+            time.sleep(5)
 
     def discovery(self):
         while True:

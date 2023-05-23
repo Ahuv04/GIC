@@ -1,6 +1,7 @@
 from flask_classful import FlaskView, route
 from flask import Flask, jsonify, request
 from BlockchainUtils import BlockchainUtils
+from flask_cors import CORS
 import pdb
 node = None
 
@@ -9,6 +10,7 @@ class NodeAPI(FlaskView):
 
     def __init__(self):
         self.app = Flask(__name__)
+        CORS(self.app)
 
     def start(self, port):
         NodeAPI.register(self.app, route_base='/')
@@ -115,5 +117,5 @@ class NodeAPI(FlaskView):
             else:
                 sameParts[key] = False
                 
-        response = {'Owner':sameOwner, 'Parts':sameParts}
+        response = {'owner':sameOwner, 'parts':sameParts}
         return jsonify(response), 201

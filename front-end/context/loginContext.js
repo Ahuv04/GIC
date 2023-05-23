@@ -6,6 +6,7 @@ const LoginContext = React.createContext({
     isLoggedIn: false,
     restPort: 0,
     login: () => {},
+    setLoginState: () => {},
 });
 const loginIDs = {
     node1: ["pass1", 5001],
@@ -23,18 +24,22 @@ export function LoginContextProvider(props) {
         isLoggedIn: false,
         restPort: 0,
     });
-
+    const setState = (data) => {
+        //const userData = JSON.parse(localStorage.getItem("userData"));
+        window.localStorage.setItem("userData", JSON.stringify(data));
+        setLoginState(data);
+    };
     // define a method to toggle the state of the mode
     const login = (username, password) => {
         if (loginIDs[username] && loginIDs[username][0] == password) {
             const port = loginIDs[username][1];
             if (username == "node1" || username == "node2") {
-                setLoginState({ isAdmin: true, isLoggedIn: true, port: port });
+                setState({ isAdmin: true, isLoggedIn: true, port: port });
             } else {
-                setLoginState({ isAdmin: false, isLoggedIn: true, port: port });
+                setState({ isAdmin: false, isLoggedIn: true, port: port });
             }
         } else {
-            setLoginState({ isAdmin: false, isLoggedIn: false, port: 0 });
+            setState({ isAdmin: false, isLoggedIn: false, port: 0 });
         }
     };
 
@@ -44,6 +49,7 @@ export function LoginContextProvider(props) {
         isLoggedIn: loginState.isLoggedIn,
         port: loginState.port,
         login: login,
+        setLoginState: setLoginState,
     };
 
     return <LoginContext.Provider value={context}>{props.children}</LoginContext.Provider>;

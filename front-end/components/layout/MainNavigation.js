@@ -29,8 +29,20 @@ function MainNavigation() {
                         </li>
                         {isLoggedIn && (
                             <li>
-                                <Link href="/new-meetup">Explore</Link>
-                                {path == "/new-meetup" && (
+                                <Link href="/mynft">Explore</Link>
+                                {path == "/mynft" && (
+                                    <img
+                                        src="/src/line.png"
+                                        alt="Selected Line"
+                                        className={classes.selectedLine}
+                                    />
+                                )}
+                            </li>
+                        )}
+                        {isLoggedIn && (
+                            <li>
+                                <Link href="/blockchain">See Blockchain</Link>
+                                {path == "/blockchain" && (
                                     <img
                                         src="/src/line.png"
                                         alt="Selected Line"

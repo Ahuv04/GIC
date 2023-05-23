@@ -58,15 +58,23 @@ const jsonData = [
         verified: true,
     },
 ];
-function PartsList() {
+function PartsList(prop) {
+    const { owner, parts } = prop;
+    const result = jsonData.filter((item) => { return (parts[item.str.toLowerCase()] != undefined)});
+    if (owner) {
+        for (let i = 0; i < result.length; i++) {
+            result[i].verified = parts[result[i].str];
+        }
+    }
+
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState(jsonData);
+    const [searchResults, setSearchResults] = useState(result);
 
     const handleSearch = (e) => {
         const searchTerm = e.target.value.toLowerCase();
         setSearchTerm(searchTerm);
 
-        const filteredResults = jsonData.filter((item) =>
+        const filteredResults = result.filter((item) =>
             item.name.toLowerCase().includes(searchTerm)
         );
         setSearchResults(filteredResults);
@@ -81,10 +89,10 @@ function PartsList() {
                 onChange={handleSearch}
                 className={classes.search}
             />
-            {searchResults.map((item) => (
+            {searchResults.map((item, index) => (
                 <Fragment key={item.id}>
                     <PartCard
-                        id={item.id}
+                        id={index + 1}
                         name={item.name}
                         str={item.str}
                         verified={item.verified}
