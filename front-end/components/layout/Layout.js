@@ -10,10 +10,19 @@ function Layout(props) {
     const router = useRouter();
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const userData = JSON.parse(window.localStorage.getItem("userData"));
-            // localStorage.setItem("userData", JSON.stringify(data));
+            const userData = JSON.parse(window.sessionStorage.getItem("userData"));
+            console.log(userData);
+            // sessionStorage.setItem("userData", JSON.stringify(data));
             if (userData && userData.port && !isLoggedIn) {
                 setLoginState(userData);
+            } else if (
+                router.isReady &&
+                router.pathname != "/" &&
+                router.pathname != "/login" &&
+                !isLoggedIn
+            ) {
+                console.log(isLoggedIn);
+                router.push("/");
             }
         } else if (
             router.isReady &&

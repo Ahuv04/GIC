@@ -27,7 +27,7 @@ function MainNavigation() {
                                 />
                             )}
                         </li>
-                        {isLoggedIn && (
+                        {isLoggedIn && !isAdmin && (
                             <li>
                                 <Link href="/mynft">Explore</Link>
                                 {path == "/mynft" && (

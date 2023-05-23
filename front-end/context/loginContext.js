@@ -25,8 +25,8 @@ export function LoginContextProvider(props) {
         restPort: 0,
     });
     const setState = (data) => {
-        //const userData = JSON.parse(localStorage.getItem("userData"));
-        window.localStorage.setItem("userData", JSON.stringify(data));
+        //const userData = JSON.parse(sessionStorage.getItem("userData"));
+        window.sessionStorage.setItem("userData", JSON.stringify(data));
         setLoginState(data);
     };
     // define a method to toggle the state of the mode

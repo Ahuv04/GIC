@@ -42,6 +42,8 @@ const MyForm = () => {
                 console.log(data);
                 if (type == "validate") {
                     setResult(data);
+                } else {
+                    setResult(jsonData);
                 }
             })
             .catch((error) => {
@@ -58,7 +60,7 @@ const MyForm = () => {
         }
 
         if (!!error) {
-            console.info(error);
+            
         }
     };
 
@@ -115,8 +117,12 @@ const MyForm = () => {
                     </div>
                 </form>
             ) : (
-                <div style={{ width: "100%" }}>
-                    <h3 className={classes.heading}>Parts Collection</h3>
+                <div style={{ width: "100%", marginTop: "10%" }}>
+                    <h3 className={classes.heading}>
+                        {ttypeRef.current?.value == "validate"
+                            ? "Validated Parts"
+                            : "Added following parts to the owner's NFT"}
+                    </h3>
                     <PartsList
                         parts={result.parts}
                         owner={result.owner}

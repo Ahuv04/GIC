@@ -112,7 +112,7 @@ class NodeAPI(FlaskView):
         sameOwner = (originalOwner == owner)
         sameParts = {}
         for (key, val) in originalParts.items():
-            if current_parts[key] and current_parts[key] == val:
+            if key in current_parts and current_parts[key] == val:
                 sameParts[key] = True
             else:
                 sameParts[key] = False
