@@ -6,14 +6,15 @@ import PartsList from "../ui/PartsLists";
 import LoginContext from "../../context/loginContext";
 
 const MyForm = () => {
-    const [publicID, setPublicID] = useState("");
+    const [tstype, setType] = useState("validate");
     const [jsonData, setJsonData] = useState(null);
-    const [qrCodeData, setQRCodeData] = useState(null);
     const [result, setResult] = useState(null);
 
     const { port } = useContext(LoginContext);
     const ttypeRef = useRef();
-
+    const changeRef = (evt) => {
+        setType(ttypeRef.current.value);
+    };
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
@@ -60,7 +61,6 @@ const MyForm = () => {
         }
 
         if (!!error) {
-            
         }
     };
 
@@ -72,7 +72,11 @@ const MyForm = () => {
                     onSubmit={handleFormSubmit}
                 >
                     <div className={classes.textcls}>
-                        <p> Add/Validate parts for customers </p>
+                        <p>
+                            {tstype == "validate"
+                                ? "Validate parts for customers"
+                                : "Give ownership to customer"}
+                        </p>
                     </div>
                     <div className={classes.control}>
                         <label htmlFor="select">Transaction type:</label>
@@ -80,6 +84,7 @@ const MyForm = () => {
                             required
                             id="ttype"
                             ref={ttypeRef}
+                            onChange={changeRef}
                         >
                             <option value="validate">Validate Parts</option>
                             <option value="ownership">Give Ownership</option>
@@ -119,7 +124,7 @@ const MyForm = () => {
             ) : (
                 <div style={{ width: "100%", marginTop: "10%" }}>
                     <h3 className={classes.heading}>
-                        {ttypeRef.current?.value == "validate"
+                        {tstype == "validate"
                             ? "Validated Parts"
                             : "Added following parts to the owner's NFT"}
                     </h3>

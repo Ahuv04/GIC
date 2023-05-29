@@ -54,51 +54,74 @@ function MyNFTs(props) {
         }
     }, [setData, port]);
     console.log(walletBalance, stake, mineRewards);
+    console.log(data);
     const uiElement = data ? (
-        <div
-            style={{
-                display: "flex",
-                marginTop: "-5%",
-                marginLeft: "10%",
-                marginRight: "5%",
-            }}
-        >
-            <div style={{ marginRight: "20%" }}>
-                <h1
-                    style={{
-                        fontFamily: "Noto Sans",
-                        fontStyle: "normal",
-                        fontWeight: 400,
-                        fontSize: "45px",
-                    }}
-                >
-                    My NFTs
-                </h1>
-                <img
-                    src="/src/jlrcar.png"
-                    className={classes.carImage}
-                />
-                <h2 style={{ textAlign: "center" }}>VIN Number: {data["vin"]}</h2>
-                {walletBalance != null && stake != null && mineRewards != null ? (
-                    <div style={{ padding: "5px", marginLeft:"auto", marginRight:"10%"}}>
-                        <Card>
-                            <div style={{ padding: "5px"}}>
-                                <p>Wallet Balance: {walletBalance}</p>
-                                <p>Coins for stake: {stake}</p>
-                                <p>Mining Rewards: {mineRewards}</p>
-                                <p>Sustainability Rewards: 50</p>
-                            </div>
-                        </Card>
-                    </div>
-                ) : (
-                    <div />
-                )}
+        data.vin ? (
+            <div
+                style={{
+                    display: "flex",
+                    marginTop: "-5%",
+                    marginLeft: "10%",
+                    marginRight: "5%",
+                }}
+            >
+                <div style={{ marginRight: "20%" }}>
+                    <h1
+                        style={{
+                            fontFamily: "Noto Sans",
+                            fontStyle: "normal",
+                            fontWeight: 400,
+                            fontSize: "45px",
+                        }}
+                    >
+                        My NFTs
+                    </h1>
+                    <img
+                        src="/src/jlrcar.png"
+                        className={classes.carImage}
+                    />
+                    <h2 style={{ textAlign: "center", marginRight: "8%" }}>
+                        VIN Number: {data["vin"]}
+                    </h2>
+                    <button
+                        className={classes.button}
+                        style={{ width: "30%", marginLeft: "30%", marginTop: "10%" }}
+                    >
+                        Report car stolen
+                    </button>
+                    {walletBalance != null && stake != null && mineRewards != null ? (
+                        <div style={{ padding: "5px", marginLeft: "auto", marginRight: "10%" }}>
+                            <Card>
+                                <div style={{ padding: "5px" }}>
+                                    <p>Wallet Balance: {walletBalance}</p>
+                                    <p>Coins for stake: {stake}</p>
+                                    <p>Mining Rewards: {mineRewards}</p>
+                                    <p>Sustainability Rewards: 50</p>
+                                </div>
+                            </Card>
+                        </div>
+                    ) : (
+                        <div />
+                    )}
+                </div>
+                <div style={{ width: "100%" }}>
+                    <h3 className={classes.heading}>Parts Collection</h3>
+                    <PartsList parts={data["parts"]} />
+                </div>
             </div>
-            <div style={{ width: "100%" }}>
-                <h3 className={classes.heading}>Parts Collection</h3>
-                <PartsList parts={data["parts"]} />
-            </div>
-        </div>
+        ) : (
+            <h1
+                style={{
+                    fontFamily: "Noto Sans",
+                    fontStyle: "normal",
+                    fontWeight: 400,
+                    fontSize: "35px",
+                    textAlign: "center"
+                }}
+            >
+                Sorry, you do not any JLR NFT!
+            </h1>
+        )
     ) : (
         <div />
     );
